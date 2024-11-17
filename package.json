@@ -1,0 +1,22 @@
+{
+    "name": "pfp",
+    "version": "1.0.0",
+    "description": "Apis Portal Fidelizacion de Pacientes",
+    "main": "index.js",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+         "start:dev": "concurrently \"node index.js\" \"php artisan serve\""
+    },
+    "devDependencies": {
+        "axios": "^1.6.4",
+        "body-parser": "^1.20.3",
+        "concurrently": "^9.1.0",
+        "express": "^4.21.1",
+        "laravel-vite-plugin": "^1.0",
+        "pg": "^8.13.1",
+        "vite": "^5.0"
+    }
+}
