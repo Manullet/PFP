@@ -1,4 +1,4 @@
-@extends ('layouts.principal')
+@extends('layouts.principal')
 @section('content')
 <div class="container-fluid py-4">
     <section class="content">
@@ -11,11 +11,12 @@
                         <div class="card-header">
                             <h1 class="card-title">LISTA DE LABORATORIOS</h1>
                             <div class="card-tools">
-                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">+NUEVO</button>
-                           <a href="{{ url('inicio') }}" class="btn btn-secondary">VOLVER</a>
-                   
-                         </div>
-                     </div>
+                                @if ($permiso_insercion == 1)
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">+NUEVO</button>
+                                @endif
+                                <a href="{{ url('inicio') }}" class="btn btn-secondary">VOLVER</a>
+                            </div>
+                        </div>
        
                         <!-- /.INICIO DE LA TABLA -->
                         <div class="card-body table-responsive">
@@ -53,13 +54,15 @@
                                             <td>{{ $Laboratorio['fecha_modificacion'] }}</td>
                                             <td>{{ $Laboratorio['modificado_por'] }}</td>
                                             
-                                            <th>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                            
-                            <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-editor-{{$Laboratorio['id_laboratorio']}}"><i class="bi bi-pencil-fill"></i> ACTUALIZAR </a>
-                            
-                            </div>
-                        </th>
+                                            <td>
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    @if ($permiso_actualizacion == 1)
+                                                        <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-editor-{{ $Laboratorio['id_laboratorio'] }}">
+                                                            <i class="bi bi-pencil-fill"></i> ACTUALIZAR
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -73,11 +76,20 @@
         </div>
     </section>
 
-<!-- MODAL EDITAR LABORATORIO -->
+    <!-- Modales existentes se mantienen igual -->
 
-
-
- <!--MODAL EDITAR-->
+    <!-- Modal para AGREGAR -->
+    @if ($permiso_insercion == 1)
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Contenido del modal para agregar -->
+                    <!-- ... -->
+                </div>
+            </div>
+        </div>
+    @endif
+    <!--MODAL EDITAR-->
  @foreach ($Laboratorios as $Laboratorio)
 <div class="modal fade" id="modal-editor-{{$Laboratorio['id_laboratorio']}}">
         <div class="modal-dialog">
@@ -296,6 +308,3 @@
 <!-- /.modal -->
 
 @endsection
-
-
-
