@@ -25,7 +25,7 @@ class PaisController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 2 (Pais)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 2) // ID del objeto que corresponde a "Pais"
+                ->where('id_objeto', 27) // ID del objeto que corresponde a "Pais"
                 ->first();
 
             if ($permisos) {
@@ -53,7 +53,7 @@ class PaisController extends Controller
 
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 2) // ID del objeto que corresponde a "Pais"
+                ->where('id_objeto', 27) // ID del objeto que corresponde a "Pais"
                 ->first();
 
             if ($permisos) {
@@ -85,7 +85,7 @@ class PaisController extends Controller
 
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 2) // ID del objeto que corresponde a "Pais"
+                ->where('id_objeto', 27) // ID del objeto que corresponde a "Pais"
                 ->first();
 
             if ($permisos) {

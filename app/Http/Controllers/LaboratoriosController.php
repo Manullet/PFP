@@ -32,7 +32,7 @@ class LaboratoriosController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 3 (laboratorios)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 3) // ID del objeto que corresponde a "laboratorios"
+                ->where('id_objeto', 12) // ID del objeto que corresponde a "laboratorios"
                 ->first();
 
             // Si se encuentran permisos para este rol y objeto, asignarlos

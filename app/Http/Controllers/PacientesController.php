@@ -29,7 +29,7 @@ class PacientesController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 6 (pacientes)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 6) // ID del objeto que corresponde a "pacientes"
+                ->where('id_objeto', 15) // ID del objeto que corresponde a "pacientes"
                 ->first();
 
             // Si se encuentran permisos para este rol y objeto, asignarlos

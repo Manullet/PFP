@@ -25,7 +25,7 @@ class UnidadMedidaController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 13 (unidad de medida)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 13) // ID del objeto que corresponde a "unidad de medida"
+                ->where('id_objeto', 22) // ID del objeto que corresponde a "unidad de medida"
                 ->first();
 
             if ($permisos) {
@@ -54,7 +54,7 @@ class UnidadMedidaController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 13 (unidad de medida)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 13) // ID del objeto que corresponde a "unidad de medida"
+                ->where('id_objeto', 22) // ID del objeto que corresponde a "unidad de medida"
                 ->first();
 
             if ($permisos) {
@@ -91,7 +91,7 @@ class UnidadMedidaController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 13 (unidad de medida)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 13) // ID del objeto que corresponde a "unidad de medida"
+                ->where('id_objeto', 22) // ID del objeto que corresponde a "unidad de medida"
                 ->first();
 
             if ($permisos) {

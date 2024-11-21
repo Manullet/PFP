@@ -25,7 +25,7 @@ class FormaFarmaceuticaController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 11 (forma farmacéutica)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 1) // ID del objeto que corresponde a "forma farmacéutica"
+                ->where('id_objeto', 20) // ID del objeto que corresponde a "forma farmacéutica"
                 ->first();
 
             if ($permisos) {
@@ -54,7 +54,7 @@ class FormaFarmaceuticaController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 11 (forma farmacéutica)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 1) // ID del objeto que corresponde a "forma farmacéutica"
+                ->where('id_objeto', 20) // ID del objeto que corresponde a "forma farmacéutica"
                 ->first();
 
             if ($permisos) {
@@ -91,7 +91,7 @@ class FormaFarmaceuticaController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 11 (forma farmacéutica)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 1) // ID del objeto que corresponde a "forma farmacéutica"
+                ->where('id_objeto', 20) // ID del objeto que corresponde a "forma farmacéutica"
                 ->first();
 
             if ($permisos) {
