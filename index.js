@@ -1822,3 +1822,173 @@ app.post('/insert_registro', (req, res) => {
         }
     });
 });
+
+
+
+// Endpoint para insertar
+app.post('/insert_parametro', (req, res) => {
+    const { parametro, valor, id_usuario } = req.body;
+
+    if (!parametro || !valor || !id_usuario) {
+        return res.status(400).send('Todos los campos son obligatorios');
+    }
+
+    const query = 'CALL pfp_schema.insert_parametro($1, $2, $3)';
+    const values = [parametro, valor, id_usuario];
+
+    pgClient.query(query, values, (err) => {
+        if (!err) {
+            res.status(200).send('Parámetro insertado exitosamente');
+        } else {
+            console.error(err);
+            res.status(500).send('Error al insertar el parámetro');
+        }
+    });
+});
+
+
+// Endpoint para seleccionar
+app.get('/get_parametros', (req, res) => {
+    const query = 'SELECT * FROM pfp_schema.get_parametro()';
+
+    pgClient.query(query, (err, result) => {
+        if (!err) {
+            res.status(200).json(result.rows);
+        } else {
+            console.error(err);
+            res.status(500).send('Error al obtener los parámetros');
+        }
+    });
+});
+
+// Endpoint para actualizar
+app.put('/update_parametro', (req, res) => {
+    const { id_parametro, parametro, valor, id_usuario } = req.body;
+
+    if (!id_parametro || !parametro || !valor || !id_usuario) {
+        return res.status(400).send('Todos los campos son obligatorios');
+    }
+
+    const query = 'CALL pfp_schema.update_parametro($1, $2, $3, $4)';
+    const values = [id_parametro, parametro, valor, id_usuario];
+
+    pgClient.query(query, values, (err) => {
+        if (!err) {
+            res.status(200).send('Parámetro actualizado exitosamente');
+        } else {
+            console.error(err);
+            res.status(500).send('Error al actualizar el parámetro');
+        }
+    });
+});
+
+
+// Endpoint para eliminar
+app.delete('/delete_parametro', (req, res) => {
+    const { id_parametro } = req.body;
+
+    if (!id_parametro) {
+        return res.status(400).send('El ID del parámetro es obligatorio');
+    }
+
+    const query = 'CALL pfp_schema.delete_parametro($1)';
+    const values = [id_parametro];
+
+    pgClient.query(query, values, (err) => {
+        if (!err) {
+            res.status(200).send('Parámetro eliminado exitosamente');
+        } else {
+            console.error(err);
+            if (err.message.includes('no existe')) {
+                res.status(404).send(err.message);
+            } else {
+                res.status(500).send('Error al eliminar el parámetro');
+            }
+        }
+    });
+});
+
+// Endpoint para insertar un nuevo objeto
+app.post('/insert_objeto', (req, res) => {
+    const { nombre, descripcion, id_estado } = req.body; // Capturar datos del cuerpo de la solicitud
+
+    if (!nombre || !id_estado) {
+        return res.status(400).send('El nombre y el ID del estado son requeridos');
+    }
+
+    const query = 'CALL pfp_schema.insert_objeto($1, $2, $3)'; // Llamar al procedimiento almacenado
+    const values = [nombre, descripcion, id_estado];
+
+    // Ejecutar la consulta
+    pgClient.query(query, values, (err, result) => {
+        if (!err) {
+            res.status(200).send('Objeto insertado exitosamente');
+        } else {
+            console.error(err);
+            res.status(500).send('Error al insertar el objeto');
+        }
+    });
+});
+
+// Endpoint para seleccionar un nuevo objeto
+app.get('/get_objetos', (req, res) => {
+    const query = 'SELECT * FROM pfp_schema.get_objetos()'; // Llamada a la función
+
+    pgClient.query(query, (err, result) => {
+        if (!err) {
+            res.status(200).json(result.rows); // Devolver los datos en formato JSON
+        } else {
+            console.error(err);
+            res.status(500).send('Error al obtener los datos de objetos');
+        }
+    });
+});
+
+
+// Endpoint para actualizar un nuevo objeto
+app.put('/update_objeto', (req, res) => {
+    const { id_objeto, nombre, descripcion, id_estado } = req.body; // Capturamos los datos del cuerpo
+
+    if (!id_objeto) {
+        return res.status(400).send('El ID del objeto es obligatorio');
+    }
+
+    const query = 'CALL pfp_schema.update_objeto($1, $2, $3, $4)';
+    const values = [id_objeto, nombre || null, descripcion || null, id_estado || null];
+
+    // Ejecutar la consulta
+    pgClient.query(query, values, (err, result) => {
+        if (!err) {
+            res.status(200).send('Objeto actualizado exitosamente');
+        } else {
+            console.error(err);
+            res.status(500).send('Error al actualizar el objeto');
+        }
+    });
+});
+
+// Endpoint para eliminar un nuevo objeto
+app.delete('/delete_objeto', (req, res) => {
+    const { id_objeto } = req.body; // Capturamos el ID del objeto desde el cuerpo
+
+    if (!id_objeto) {
+        return res.status(400).send('El ID del objeto es obligatorio');
+    }
+
+    const query = 'CALL pfp_schema.delete_objeto($1)';
+    const values = [id_objeto];
+
+    // Ejecutar la consulta
+    pgClient.query(query, values, (err, result) => {
+        if (!err) {
+            res.status(200).send('Objeto eliminado exitosamente');
+        } else {
+            console.error(err);
+            if (err.message.includes('no existe')) {
+                res.status(404).send(err.message);
+            } else {
+                res.status(500).send('Error al eliminar el objeto');
+            }
+        }
+    });
+});

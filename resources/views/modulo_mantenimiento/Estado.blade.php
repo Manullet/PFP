@@ -196,9 +196,4 @@
 </div>
 <!-- Modal termina agregar Estado-->
 
-
-
-
-
-
 @endsection()

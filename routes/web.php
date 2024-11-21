@@ -36,15 +36,14 @@ Route::get( 'GenerarExcel',  [App\Http\Controllers\GenerarExcelController::class
 
 
 Route::get('Permisos', [App\Http\Controllers\PermisoController::class, 'index']);
-Route::get('Parametros', [App\Http\Controllers\ParametroController::class, 'index']);
+//Route::get('Parametros', [App\Http\Controllers\ParametroController::class, 'index']);
 Route::get('Bitacora', [App\Http\Controllers\BitacoraController::class, 'index']);
-Route::get('Objeto', [App\Http\Controllers\ObjetoController::class, 'index']);
+//Route::get('Objeto', [App\Http\Controllers\ObjetoController::class, 'index']);
 Route::get('Backup_Restore', [App\Http\Controllers\Backup_RestoreController::class, 'index']);
 
 //Route::get('ForgotPassword', [App\Http\Controllers\ForgotPasswordController::class, 'index']);
 Route::get('CambiarContrasena', [App\Http\Controllers\CambiarContrasenaController::class, 'index']);
 Route::get('AdministrarPerfil', [App\Http\Controllers\AdministrarPerfilController::class, 'index']);
-
 
 
 //MODULO DE OPERACIONES
@@ -192,6 +191,18 @@ Route::put('editar_contacto', [App\Http\Controllers\ContactosController::class, 
 Route::get('Sucursal', [App\Http\Controllers\SucursalesController::class, 'index']);
 Route::post('agregar_sucursal',[App\Http\Controllers\SucursalesController::class, 'store']);
 Route::put('editar_sucursal', [App\Http\Controllers\SucursalesController::class, 'update']);
+
+//-------------------------------------------PARAMETRO
+Route::get('Parametro', [App\Http\Controllers\ParametroController::class, 'index']);
+Route::post('agregar_parametro',[App\Http\Controllers\ParametroController::class, 'store']);
+Route::put('editar_parametro', [App\Http\Controllers\ParametroController::class, 'update']);
+Route::delete('eliminar_parametro/{id_parametro}', [App\Http\Controllers\ParametroController::class, 'destroy']);
+
+//-------------------------------------------OBJETOS
+Route::get('Objeto', [App\Http\Controllers\ObjetoController::class, 'index']);
+Route::post('agregar_objeto',[App\Http\Controllers\ObjetoController::class, 'store']);
+Route::put('editar_objeto', [App\Http\Controllers\ObjetoController::class, 'update']);
+Route::delete('eliminar_objeto/{id_objeto}', [App\Http\Controllers\ObjetoController::class, 'destroy']);
 
 }); //aqui termina middleware auth dega
 
