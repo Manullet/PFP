@@ -25,7 +25,7 @@ class MarcaProductoController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 1 (marca producto)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 1) // ID del objeto que corresponde a "marca producto"
+                ->where('id_objeto', 19) // ID del objeto que corresponde a "marca producto"
                 ->first();
 
             if ($permisos) {
@@ -55,7 +55,7 @@ class MarcaProductoController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 1 (marca producto)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 1) // ID del objeto que corresponde a "marca producto"
+                ->where('id_objeto', 19) // ID del objeto que corresponde a "marca producto"
                 ->first();
 
             if ($permisos) {
@@ -92,7 +92,7 @@ class MarcaProductoController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 1 (marca producto)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 1) // ID del objeto que corresponde a "marca producto"
+                ->where('id_objeto', 19) // ID del objeto que corresponde a "marca producto"
                 ->first();
 
             if ($permisos) {

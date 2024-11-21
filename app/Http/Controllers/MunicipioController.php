@@ -26,7 +26,7 @@ class MunicipioController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 5 (Municipio)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 5) // ID del objeto que corresponde a "Municipio"
+                ->where('id_objeto', 30) // ID del objeto que corresponde a "Municipio"
                 ->first();
 
             if ($permisos) {
@@ -55,7 +55,7 @@ class MunicipioController extends Controller
 
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 5) // ID del objeto que corresponde a "Municipio"
+                ->where('id_objeto', 30) // ID del objeto que corresponde a "Municipio"
                 ->first();
 
             if ($permisos) {
@@ -88,7 +88,7 @@ class MunicipioController extends Controller
 
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 5) // ID del objeto que corresponde a "Municipio"
+                ->where('id_objeto', 30) // ID del objeto que corresponde a "Municipio"
                 ->first();
 
             if ($permisos) {

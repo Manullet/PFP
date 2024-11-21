@@ -34,7 +34,7 @@ class ProductosController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 5 (productos)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 5) // ID del objeto que corresponde a "productos"
+                ->where('id_objeto', 14) // ID del objeto que corresponde a "productos"
                 ->first();
 
             // Si se encuentran permisos para este rol y objeto, asignarlos

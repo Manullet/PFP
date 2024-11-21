@@ -25,7 +25,7 @@ class TipoEntidadController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 6 (TipoEntidad)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 6) // ID del objeto que corresponde a "TipoEntidad"
+                ->where('id_objeto', 25) // ID del objeto que corresponde a "TipoEntidad"
                 ->first();
 
             if ($permisos) {
@@ -53,7 +53,7 @@ class TipoEntidadController extends Controller
 
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 6)
+                ->where('id_objeto', operator: 25)
                 ->first();
 
             if ($permisos) {
@@ -92,7 +92,7 @@ class TipoEntidadController extends Controller
 
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 6)
+                ->where('id_objeto', 25)
                 ->first();
 
             if ($permisos) {

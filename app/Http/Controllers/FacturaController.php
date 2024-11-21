@@ -28,7 +28,7 @@ class FacturaController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 9 (facturas)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 9) // ID del objeto que corresponde a "facturas"
+                ->where('id_objeto', 17) // ID del objeto que corresponde a "facturas"
                 ->first();
 
             // Si se encuentran permisos para este rol y objeto, asignarlos
@@ -60,7 +60,7 @@ class FacturaController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 9 (facturas)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 9) // ID del objeto que corresponde a "facturas"
+                ->where('id_objeto', 17) // ID del objeto que corresponde a "facturas"
                 ->first();
 
             if ($permisos) {

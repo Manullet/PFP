@@ -25,7 +25,7 @@ class TipoRegistroController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto (por ejemplo, TipoRegistro)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 10) // ID del objeto que corresponde a "TipoRegistro"
+                ->where('id_objeto', 24) // ID del objeto que corresponde a "TipoRegistro"
                 ->first();
 
             if ($permisos) {
@@ -53,7 +53,7 @@ class TipoRegistroController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto (por ejemplo, TipoRegistro)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 10) // ID del objeto que corresponde a "TipoRegistro"
+                ->where('id_objeto', 24) // ID del objeto que corresponde a "TipoRegistro"
                 ->first();
 
             if ($permisos) {
@@ -92,7 +92,7 @@ class TipoRegistroController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto (por ejemplo, TipoRegistro)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 10) // ID del objeto que corresponde a "TipoRegistro"
+                ->where('id_objeto', 24) // ID del objeto que corresponde a "TipoRegistro"
                 ->first();
 
             if ($permisos) {

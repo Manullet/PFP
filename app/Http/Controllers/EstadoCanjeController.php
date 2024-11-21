@@ -27,7 +27,7 @@ class EstadoCanjeController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 8 (estado canje)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 8) // ID del objeto que corresponde a "estado canje"
+                ->where('id_objeto', 16) // ID del objeto que corresponde a "estado canje"
                 ->first();
 
             // Si se encuentran permisos para este rol y objeto, asignarlos
@@ -59,7 +59,7 @@ class EstadoCanjeController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 8 (estado canje)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 8) // ID del objeto que corresponde a "estado canje"
+                ->where('id_objeto', 16) // ID del objeto que corresponde a "estado canje"
                 ->first();
 
             if ($permisos) {
@@ -90,7 +90,7 @@ class EstadoCanjeController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 8 (estado canje)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 8) // ID del objeto que corresponde a "estado canje"
+                ->where('id_objeto', 16) // ID del objeto que corresponde a "estado canje"
                 ->first();
 
             if ($permisos) {

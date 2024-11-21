@@ -28,7 +28,7 @@ class DepartamentoController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 1 (departamento)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 1) // ID del objeto que corresponde a "departamento"
+                ->where('id_objeto', 29) // ID del objeto que corresponde a "departamento"
                 ->first();
 
             // Si se encuentran permisos para este rol y objeto, asignarlos
@@ -60,7 +60,7 @@ class DepartamentoController extends Controller
             // Consultar los permisos de inserción
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 1) // ID del objeto que corresponde a "Departamento"
+                ->where('id_objeto', 29) // ID del objeto que corresponde a "Departamento"
                 ->first();
 
             if ($permisos) {
@@ -95,7 +95,7 @@ class DepartamentoController extends Controller
             // Consultar los permisos de edición
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 1) // ID del objeto que corresponde a "Departamento"
+                ->where('id_objeto', 29) // ID del objeto que corresponde a "Departamento"
                 ->first();
 
             if ($permisos) {
