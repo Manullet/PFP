@@ -16,7 +16,7 @@ class UsuarioController extends Controller
         $tabla_rol = Http::get('http://localhost:3000/get_roles');
 
         // Manejo de sesión y permisos
-        $usuario = session(key: 'usuario'); // Obtener usuario desde la sesión
+        $usuario = session('usuario'); // Obtener usuario desde la sesión
 
         // Permisos predeterminados
         $permiso_insercion = 2;
@@ -30,24 +30,24 @@ class UsuarioController extends Controller
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
                 ->where('id_objeto', 1) // ID del objeto que corresponde a "usuarios"
-                ->where('permiso_creacion',$permiso_insercion ) // ID del objeto que corresponde a "usuarios"
-                ->where('permiso_actualizacion', $permiso_actualizacion) // ID del objeto que corresponde a "usuarios"
-                ->where('permiso_eliminacion', $permiso_eliminacion) // ID del objeto que corresponde a "usuarios"
-
                 ->first();
 
             // Si se encuentran permisos para este rol y objeto, asignarlos
             if ($permisos) {
-                $permiso_insercion = $permisos->permiso_creacion; // Asignar el permiso de creación
-                $permiso_actualizacion = $permisos->permiso_actualizacion; // Asignar el permiso de actualización
-                $permiso_eliminacion = $permisos->permiso_eliminacion; // Asignar el permiso de eliminación
+                $permiso_insercion = $permisos->permiso_creacion;
+                $permiso_actualizacion = $permisos->permiso_actualizacion;
+                $permiso_eliminacion = $permisos->permiso_eliminacion;
             }
         }
+
+        // Para depuración: Verificar valores antes de retornar la vista
+        // Descomenta esto si quieres depurar.
+        // dd(session('usuario'), $permiso_insercion, $permiso_actualizacion, $permiso_eliminacion);
 
         // Retornar vista con datos y permisos
         return view('modulo_usuarios.Usuarios')->with([
             'tblrol' => json_decode($tabla_rol, true),
-            'tblestado' => json_decode($tabla_estado, associative: true),
+            'tblestado' => json_decode($tabla_estado, true),
             'Usuarios' => json_decode($response, true),
             'permiso_insercion' => $permiso_insercion,
             'permiso_actualizacion' => $permiso_actualizacion,
