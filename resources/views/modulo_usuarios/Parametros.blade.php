@@ -1,237 +1,223 @@
-
 @extends ('layouts.principal')
+
 @section('content')
-<br>
-                <!-- TABLA CONTENIDO CENTRAL -->
-                <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h1 class="card-title">LISTA DE PARAMETROS</h1>
-                    <div class="card-tools">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
-                    <i class="fas fa-plus"></i> NUEVO
-                    </button>
-                    </div>
-                    </div>
-        
-              <!-- /.INICIO DE LA TABLA -->
-              <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped table-sm">
-              <thead class=" text-center bg-danger blue text-white">
-
-                  <tr>
-                    <th>CODIGO</th>
-                    <th>PARAMETRO</th>
-                    <th>VALOR</th>
-                    <th>USUARIO</th>
-                    <th>CREADO POR</th>
-                    <th>FECHA CREACION</th>
-                    <th>MODIFICADO POR</th>
-                    <th>FECHA MODIFICACION</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                 
-                    <!-- CONTENIDO QUE VA TENER LA TABLA  -->
-                
-                  <tr>
-                    <td>1</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>JUNIOR ADALID MARTINEZ</td>
-                    <td>JUNIOR ADALID MARTINEZ</td>
-                    <td>01/01/2024</td>
-                    <td>JUNIOR ADALID MARTINEZ</td>
-                    <td>01/01/2024</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                  </tr>
-                 
-                  </tfoot>
-                </table>
+<div class="container-fluid py-4">
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <!-- Tarjeta -->
+          <div class="card">
+            <!-- Tarjeta Cabeza -->
+            <div class="card-header">
+              <h1 class="card-title">LISTA DE PARAMETROS</h1>
+              <div class="card-tools">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">Nuevo</button>
+                <a href="{{ url('inicio') }}" class="btn btn-secondary">VOLVER</a>
               </div>
-              <!-- /.CIERRE -->
             </div>
-            <!-- /carta -->
 
-        </div>
-        </div>
-        </div>
-    </section>
-<!-- TABLA CONTENIDO CENTRAL -->
+            <!-- /.INICIO DE LA TABLA -->
+            <div class="card-body table-responsive">
+              <table id="example1" class="table table-bordered table-striped table-hover table-sm text-center">
+                <thead class="bg-danger text-white">
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Parametro</th>
+                    <th>Valor</th>
+                    <th>Usuario</th>
+                    <th>Fecha Creacion</th>
+                    <th>Creado Por</th>
+                    <th>Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($Parametros as $Parametro)
+                  <tr>
+                    <td>{{ $Parametro['id_parametro'] }}</td>
+                    <td>{{ $Parametro['parametro'] }}</td>
+                    <td>{{ $Parametro['valor'] }}</td>
+                    <td>{{ $Parametro['nombre_usuario'] }}</td>
+                    <td>{{ $Parametro['fecha_creacion'] }}</td>
+                    <td>{{ $Parametro['creado_por'] }}</td>
 
-<!-- MODAL DE ELIMINAR-->
-
-
-<div class="modal fade" id="modal-danger">
-        <div class="modal-dialog">
-          <div class="modal-content bg-danger">
-            <div class="modal-header">
-              <h4 class="modal-title">ELIMINAR PARAMETRO</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                    <th>
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                        <a type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-editor-{{$Parametro['id_parametro']}}">Actualizar <i class="bi bi-pencil-fill"></i> </a>
+                        
+                        <!-- Botón de eliminar -->
+                        <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{$Parametro['id_parametro']}}">Eliminar <i class="bi bi-trash-fill"></i> </a>
+                      </div>
+                    </th>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
             </div>
-            <div class="modal-body">
-              <p>¿ESTA SEGURO QUE DESEAS ELIMINAR?&hellip;</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-outline-light" data-dismiss="modal">CANCELAR</button>
-              <button type="button" class="btn btn-outline-light">CONFIRMAR</button>
+            <!-- FIN de la tabla -->
+          </div>
+          <!-- FIN de la tarjeta -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MODAL EDITAR LABORATORIO -->
+
+
+
+  <!--MODAL EDITAR-->
+  @foreach ($Parametros as $Parametro)
+  <div class="modal fade" id="modal-editor-{{$Parametro['id_parametro']}}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Actualizar Parametro</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <form action="editar_parametro" method="post">
+          @csrf
+          @method('PUT')
+          <div class="modal-body">
+            <div class="row">
+              <input type="hidden" id="cod" name="cod" class="form-control" value="{{ $Parametro['id_parametro']}}" required>
+
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="">Parametro</label>
+                  <input type="text" id="par" name="par" class="form-control" value="{{$Parametro['parametro']}}" required>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="">Valor</label>
+                  <input type="text" id="val" name="val" class="form-control" value="{{$Parametro['valor']}}" required>
+                </div>
+              </div>
+
+            
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="">Usuario</label>
+                  <select id="usuario" name="usuario" class="form-control" requied>
+                    @foreach ($tblusuario as $tbl)
+                    <option value="{{ $tbl['id_usuario']}}" selected >{{$tbl["nombre_usuario"]}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+
+
             </div>
           </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
+        </form>
+
       </div>
-      <!-- /.modal -->
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  @endforeach
+
+  
+
+  <!-- Modal para Eliminar Objeto -->
+  @foreach ($Parametros as $Parametro)
+  <div class="modal fade" id="modal-delete-{{$Parametro['id_parametro']}}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Eliminar Parametro</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Formulario de eliminación -->
+        <form action="{{ url('eliminar_parametro', $Parametro['id_parametro']) }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <div class="modal-body">
+            <p>¿Estás seguro de que deseas eliminar el objeto "{{ $Parametro['parametro'] }}"?</p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  @endforeach
+
+  <!-- Modal para Agregar Nuevo Objeto -->
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">AGREGAR UN NUEVO PARAMETRO</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
 
-<!-- MODAL DE AGREGAR -->
-<div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">AGREGAR PARAMETRO</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <!-- form start -->
-              <form>
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">PARAMETRO</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="PARAMETRO">
-                  </div>
+      
 
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">VALOR</label>
-                    <input type="correo" class="form-control" id="exampleInputPassword1" placeholder="VALOR">
-                  </div>
+        <!-- Formulario para Agregar parametro-->
+        <form action="agregar_parametro" method="post">
+          @csrf
+          <div class="modal-body">
+            <div class="row">
 
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">USUARIO</label>
-                    <input type="descripcion" class="form-control" id="exampleInputPassword1" placeholder="USUARIO">
-                  </div>
-                 
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">CREADO POR</label>
-                    <input type="correo" class="form-control" id="exampleInputPassword1" placeholder="CREADO POR">
-                  </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="">Parametro</label>
+                  <input type="text" id="par" name="par" class="form-control" required>
+                </div>
+              </div>
 
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">FECHA CREACION</label>
-                    <input type="date" class="form-control" id="exampleInputPassword1" placeholder="CREADO POR">
-                  </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="">Valor</label>
+                  <input type="text" id="val" name="val" class="form-control" required>
+                </div>
+              </div>
 
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">MODIFICADO POR</label>
-                    <input type="correo" class="form-control" id="exampleInputPassword1" placeholder="MODIFICADO POR">
-                  </div>
+            
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="">Usuario</label>
+                  <select id="usuario" name="usuario" class="form-control" requied>
+                  <option>SELECCIONA</option>
+                    @foreach ($tblusuario as $tbl)
+                    <option value="{{ $tbl['id_usuario']}}">{{$tbl["nombre_usuario"]}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
 
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">FECHA MODIFICACION</label>
-                    <input type="date" class="form-control" id="exampleInputPassword1" placeholder="FECHA MODIFICACION">
-                  </div>
-                 
                 
-
-                <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">CERRAR</button>
-              <button type="button" class="btn btn-primary">AGREGAR</button>
-            </div>
-              </form>
-            </div>
-            </div>
-                <!-- /.card-body -->
-            <!-- /.card -->
             </div>
           </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-
-
-      <!-- MODAL DE EDITAR -->
-<div class="modal fade" id="modal-default2">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">EDITAR PARAMETRO</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <!-- form start -->
-              <form>
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">PARAMETRO</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Nombre" value= "...">
-                  </div>
-
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">VALOR</label>
-                    <input type="descripcion" class="form-control" id="exampleInputPassword1" placeholder="descripcion" value= "...">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">USUARIO</label>
-                    <input type="descripcion" class="form-control" id="exampleInputPassword1" placeholder="descripcion" value= "...">
-                  </div>
-                 
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">CREADO POR</label>
-                    <input type="correo" class="form-control" id="exampleInputPassword1" value="...">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">FECHA CREACION</label>
-                    <input type="date" class="form-control" id="exampleInputPassword1" value="...">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">MODIFICADO POR</label>
-                    <input type="correo" class="form-control" id="exampleInputPassword1" value="...">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">FECHA MODIFICACION</label>
-                    <input type="date" class="form-control" id="exampleInputPassword1" value="....">
-                  </div>
-
-                  
-
-                <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">CANCELAR</button>
-              <button type="button" class="btn btn-primary">EDITAR</button>
-            </div>
-              </form>
-            </div>
-            </div>
-                <!-- /.card-body -->
-            <!-- /.card -->
-            </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">CANCELAR</button>
+            <button type="submit" class="btn btn-primary">AGREGAR</button>
           </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+        </form>
       </div>
-      <!-- /.modal -->
-@endsection()
+    </div>
+  </div>
+</div>
+@endsection
