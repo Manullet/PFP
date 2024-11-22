@@ -12,17 +12,18 @@
                     <!-- Tarjeta_CABEZA -->
                     <div class="card-header">
                         <!-- Depuración: Mostrar datos del usuario autenticado y sus permisos -->
-                        @if(session()->has('usuario'))
+                       <!-- Depuración: Mostrar datos del usuario autenticado y sus permisos -->
+                        <!-- @if(session()->has('usuario'))
                             <p>Usuario autenticado: {{ session('usuario')['nombre_usuario'] }}</p>
                             <p>Rol: {{ session('usuario')['id_rol'] }}</p>
                         @else
                             <p>No se encontró un usuario autenticado en la sesión.</p>
                         @endif
 
-                        <!-- Mostrar permisos -->
+                         Mostrar permisos 
                         <p>Permiso de Inserción: {{ $permiso_insercion }}</p>
                         <p>Permiso de Actualización: {{ $permiso_actualizacion }}</p>
-                        <p>Permiso de Eliminación: {{ $permiso_eliminacion }}</p>
+                        <p>Permiso de Eliminación: {{ $permiso_eliminacion }}</p> -->
 
                         <h1 class="card-title">LISTA DE ROLES</h1>
                         <div class="card-tools">

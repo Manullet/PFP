@@ -41,10 +41,10 @@
                                     <td>{{ $permiso->codigo }}</td>
                                     <td>{{ $permiso->rol }}</td>
                                     <td>{{ $permiso->objeto }}</td>
-                                    <td>{{ $permiso->permiso_creacion ? 'Sí' : 'No' }}</td>
-                                    <td>{{ $permiso->permiso_actualizacion ? 'Sí' : 'No' }}</td>
-                                    <td>{{ $permiso->permiso_eliminacion ? 'Sí' : 'No' }}</td>
-                                    <td>{{ $permiso->permiso_consultar ? 'Sí' : 'No' }}</td>
+                                    <td>{{ $permiso->permiso_creacion ? '1' : '0' }}</td>
+                                    <td>{{ $permiso->permiso_actualizacion ? '1' : '0' }}</td>
+                                    <td>{{ $permiso->permiso_eliminacion ? '1' : '0' }}</td>
+                                    <td>{{ $permiso->permiso_consultar ? '1' : '0' }}</td>
                                     <td>
                                         <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-editar-{{ $permiso->codigo }}">
                                             <i class="fas fa-edit"></i> Editar

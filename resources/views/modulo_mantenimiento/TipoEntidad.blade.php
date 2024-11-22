@@ -106,12 +106,14 @@
               <div class="form-group">
                 <label for="">ESTADO</label>
                 <select id="estdo" name="estdo" class="form-control" required>
-                  @foreach ($tblestado as $tbl)
-                  <option value="{{$tbl['id_estado']}}" {{ $tbl['id_estado'] == $Entidad['id_estado'] ? 'selected' : '' }}>
-                    {{$tbl["estado"]}}
-                  </option>
-                  @endforeach
-                </select>
+  @foreach ($tblestado as $tbl)
+    <option value="{{ $tbl['id_estado'] }}" 
+            {{ $tbl['id_estado'] == optional($Entidad)['id_estado'] ? 'selected' : '' }}>
+      {{$tbl["estado"]}}
+    </option>
+  @endforeach
+</select>
+
               </div>
             </div>
 
@@ -289,12 +291,14 @@
               <div class="form-group">
                 <label for="">ESTADO</label>
                 <select id="estdo" name="estdo" class="form-control" required>
-                  @foreach ($tblestado as $tbl)
-                  <option value="{{$tbl['id_estado']}}" {{ $tbl['id_estado'] == $Entidad['id_estado'] ? 'selected' : '' }}>
-                    {{$tbl["estado"]}}
-                  </option>
-                  @endforeach
-                </select>
+  @foreach ($tblestado as $tbl)
+    <option value="{{ $tbl['id_estado'] }}" 
+            {{ $tbl['id_estado'] == optional($Entidad)['id_estado'] ? 'selected' : '' }}>
+      {{$tbl["estado"]}}
+    </option>
+  @endforeach
+</select>
+
               </div>
             </div>
 

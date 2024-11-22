@@ -9,19 +9,19 @@
                     <div class="card">
                         <!-- Tarjeta Cabeza -->
                         <div class="card-header">
-                        @if(session()->has('usuario'))
+                        <!-- @if(session()->has('usuario'))
                             <p>Usuario autenticado: {{ session('usuario')['nombre_usuario'] }}</p>
                             <p>Rol: {{ session('usuario')['id_rol'] }}</p>
                         @else
                             <p>No se encontró un usuario autenticado en la sesión.</p>
                         @endif
 
-                        <!-- Mostrar permisos -->
+                         Mostrar permisos 
                         <p>Permiso de Inserción: {{ $permiso_insercion }}</p>
-                        <p>Permiso de Actualización: {{ $permiso_edicion }}</p>
+                        <p>Permiso de Actualización: {{ $permiso_edicion }}</p> -->
                         
 
-                        <h1 class="card-title">LISTA DE USUARIOS</h1>
+                        <h1 class="card-title">LISTA DE Marca</h1>
                         <div class="card-tools">
                             @if ($permiso_insercion == 1)
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">+ NUEVO</button>

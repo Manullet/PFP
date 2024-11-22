@@ -70,7 +70,7 @@
                                     <td>{{ $Paciente["genero"]}}</td>
                                     <th>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            @if($permiso_edicion == 1)
+                                            @if($permiso_actualizacion == 1)
                                                 <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-editor-{{$Paciente['id_paciente']}}"><i class="bi bi-pencil-fill"></i> ACTUALIZAR </a>
                                             @endif
                                         </div>

@@ -15,33 +15,37 @@ class ZonaController extends Controller
         $tabla_estado = Http::get('http://localhost:3000/estados');
         $tabla_paises = Http::get('http://localhost:3000/get_paises');
 
-        // Validar permisos de visualización
+        // Manejo de sesión y permisos
         $usuario = session('usuario'); // Obtener usuario desde la sesión
-        $permiso_visualizacion = 2; // 2 es el valor predeterminado para sin permiso
+
+        // Permisos predeterminados
+        $permiso_insercion = 2; // 2 es el valor predeterminado para sin permiso
+        $permiso_edicion = 2;   // 2 es el valor predeterminado para sin permiso
 
         if ($usuario) {
             $idRolUsuario = $usuario['id_rol']; // Obtener el rol del usuario desde la sesión
 
-            // Consultar los permisos de visualización
+            // Consultar permisos en la base de datos para el rol y objeto 3 (zona)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 3) // ID del objeto que corresponde a "Zona"
+                ->where('id_objeto', 3) // ID del objeto que corresponde a "zona"
                 ->first();
 
+            // Si se encuentran permisos para este rol y objeto, asignarlos
             if ($permisos) {
-                $permiso_visualizacion = $permisos->permiso_visualizacion;
+                $permiso_insercion = $permisos->permiso_creacion ?? 2;
+                $permiso_edicion = $permisos->permiso_edicion ?? 2;
             }
         }
 
-        if ($permiso_visualizacion == 1) {
-            return view('modulo_mantenimiento.Zona')->with([
-                'tblpais' => json_decode($tabla_paises, true),
-                'tblestado' => json_decode($tabla_estado, true),
-                'Zonas' => json_decode($response, true),
-            ]);
-        } else {
-            return redirect()->back()->with('status_message', 'No tienes permiso para visualizar esta página.');
-        }
+        // Retornar vista con datos y permisos
+        return view('modulo_mantenimiento.Zona')->with([
+            'tblpais' => json_decode($tabla_paises, true),
+            'tblestado' => json_decode($tabla_estado, true),
+            'Zonas' => json_decode($response, true),
+            'permiso_insercion' => $permiso_insercion,
+            'permiso_edicion' => $permiso_edicion,
+        ]);
     }
 
     public function store(Request $request)
@@ -60,7 +64,7 @@ class ZonaController extends Controller
                 ->first();
 
             if ($permisos) {
-                $permiso_insercion = $permisos->permiso_creacion;
+                $permiso_insercion = $permisos->permiso_creacion ?? 2;
             }
         }
 
@@ -94,7 +98,7 @@ class ZonaController extends Controller
                 ->first();
 
             if ($permisos) {
-                $permiso_edicion = $permisos->permiso_edicion;
+                $permiso_edicion = $permisos->permiso_edicion ?? 2;
             }
         }
 
