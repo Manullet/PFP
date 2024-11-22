@@ -25,7 +25,7 @@ class ViaAdministracionController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 12 (vía administración)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 12) // ID del objeto que corresponde a "vía administración"
+                ->where('id_objeto', 21) // ID del objeto que corresponde a "vía administración"
                 ->first();
 
             if ($permisos) {
@@ -54,7 +54,7 @@ class ViaAdministracionController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 12 (vía administración)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 12) // ID del objeto que corresponde a "vía administración"
+                ->where('id_objeto', 21) // ID del objeto que corresponde a "vía administración"
                 ->first();
 
             if ($permisos) {
@@ -91,7 +91,7 @@ class ViaAdministracionController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 12 (vía administración)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 12) // ID del objeto que corresponde a "vía administración"
+                ->where('id_objeto', 21) // ID del objeto que corresponde a "vía administración"
                 ->first();
 
             if ($permisos) {

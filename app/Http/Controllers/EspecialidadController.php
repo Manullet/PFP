@@ -25,7 +25,7 @@ class EspecialidadController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 12 (especialidad)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 12) // ID del objeto "especialidad"
+                ->where('id_objeto', 23) // ID del objeto "especialidad"
                 ->first();
 
             if ($permisos) {
@@ -54,7 +54,7 @@ class EspecialidadController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 12 (especialidad)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 12)
+                ->where('id_objeto', 23)
                 ->first();
 
             if ($permisos) {
@@ -91,7 +91,7 @@ class EspecialidadController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 12 (especialidad)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 12)
+                ->where('id_objeto', 23)
                 ->first();
 
             if ($permisos) {

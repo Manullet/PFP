@@ -28,7 +28,9 @@ class ZonaController extends Controller
             // Consultar permisos en la base de datos para el rol y objeto 3 (zona)
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 3) // ID del objeto que corresponde a "zona"
+
+                ->where('id_objeto', 28) // ID del objeto que corresponde a "Zona"
+
                 ->first();
 
             // Si se encuentran permisos para este rol y objeto, asignarlos
@@ -60,7 +62,7 @@ class ZonaController extends Controller
             // Consultar los permisos de inserción
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 3) // ID del objeto que corresponde a "Zona"
+                ->where('id_objeto', 28) // ID del objeto que corresponde a "Zona"
                 ->first();
 
             if ($permisos) {
@@ -94,7 +96,7 @@ class ZonaController extends Controller
             // Consultar los permisos de edición
             $permisos = DB::table('pfp_schema.tbl_permiso')
                 ->where('id_rol', $idRolUsuario)
-                ->where('id_objeto', 3) // ID del objeto que corresponde a "Zona"
+                ->where('id_objeto', 28) // ID del objeto que corresponde a "Zona"
                 ->first();
 
             if ($permisos) {
